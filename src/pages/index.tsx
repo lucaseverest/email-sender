@@ -24,7 +24,7 @@ interface signUpAxiosError {
 }
 
 const signInSchema = yup.object().shape({
-  email: yup.string().required("Email obrigatório").email("E-mail inválido!"),
+  email: yup.string().required("Email obrigatório").email("Email inválido!"),
   name: yup.string().required("Nome obrigatório"),
 });
 
