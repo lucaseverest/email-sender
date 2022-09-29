@@ -83,7 +83,6 @@ const signUp = async (req: ISignUpInRequest, res: NextApiResponse) => {
 
       return res.status(200).json({ user });
     } catch (error) {
-      console.log(error);
       if (error instanceof AppError) {
         return res.status(error.statusCode).json({ message: error.message });
       } else {

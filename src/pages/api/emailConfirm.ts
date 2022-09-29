@@ -68,6 +68,11 @@ const emailConfirm = async (
           );
         }
 
+        // verificar se o email já foi confirmado
+        if (user.hasEmailConfirmed === true) {
+          throw new AppError("Email already confirmed", 403);
+        }
+
         // prisma update
         await prisma.user.update({
           where: {

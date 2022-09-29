@@ -80,7 +80,6 @@ const sendEmailConfirmMail = async (
 
       res.status(200).json({ message: "Confirmation email sent successfylly" });
     } catch (error) {
-      console.log(error);
       if (error instanceof AppError) {
         return res.status(error.statusCode).json({ message: error.message });
       } else {

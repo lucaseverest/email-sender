@@ -6,6 +6,7 @@ import * as yup from "yup";
 import { Input } from "../components/form/input";
 import { api } from "./api/lib/api";
 import axios, { AxiosError } from "axios";
+import { toast } from "react-toastify";
 
 type SignInFormData = {
   email: string;
@@ -35,7 +36,7 @@ export default function Home() {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm({
+  } = useForm<SignInFormData>({
     resolver: yupResolver(signInSchema),
   });
 
@@ -44,21 +45,28 @@ export default function Home() {
     name,
   }) => {
     try {
-      const signUpResponse = await api.post<{
+      await api.post<{
         user: User;
       }>("/signUp", {
         email,
         name,
       });
 
-      const { user } = signUpResponse.data;
-      console.log(user);
-
-      router.push("/dashboard");
+      router.push("/success");
     } catch (err) {
       const error = err as AxiosError<signUpAxiosError>;
       if (axios.isAxiosError(error) && error.response) {
-        console.log(error.response.data);
+        toast(error.response.data.message, {
+          hideProgressBar: true,
+          autoClose: 2000,
+          type: "error",
+        });
+      } else {
+        toast("Unknown Error", {
+          hideProgressBar: true,
+          autoClose: 2000,
+          type: "error",
+        });
       }
     }
   };
@@ -80,14 +88,14 @@ export default function Home() {
             name="Email"
             type="email"
             label="E-mail"
-            {...errors["email"]}
+            error={errors.email?.message}
             {...register("email")}
           />
           <Input
             name="Name"
             type="name"
             label="Name"
-            {...errors["password"]}
+            error={errors.name?.message}
             {...register("name")}
           />
         </Stack>
