@@ -17,6 +17,7 @@ Aplication in Production: <a href="https://emailsender-three.vercel.app/">emails
 - [ChakraUI](https://chakra-ui.com/)
 - [Yup](https://www.npmjs.com/package/yup)
 - [Supabase](https://supabase.com/)
+- [Prisma ORM](https://www.prisma.io/)
 - [Zoho](https://www.zoho.com/pt-br/mail/)
 - [Nodemailer](https://nodemailer.com/about/)
 - [React Hook Form](https://react-hook-form.com/)
