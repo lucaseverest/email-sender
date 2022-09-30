@@ -34,6 +34,9 @@ $ cd email-sender
 # Install the dependencies
 $ yarn
 
+# database schema migration
+$ yarn prisma migrate dev
+
 # Start the project
 $ yarn dev
 ```
